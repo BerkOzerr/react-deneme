@@ -11,7 +11,7 @@ const PokemonRow = ({ pokemon, onClick }) => (
       <td>
         <Button
           variant="contained"
-          color="success"
+          color="secondary"
           onClick={() => onClick(pokemon)}
         >
           More Information
