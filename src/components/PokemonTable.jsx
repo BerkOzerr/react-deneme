@@ -1,13 +1,11 @@
-import React, { useContext } from "react";
-
+import React from "react";
+import useStore from "../store";
 import PokemonRow from "./PokemonRow";
-import PokemonContext from "../PokemonContext";
 
 function PokemonTable() {
-  const {
-    state: { pokemon, filter },
-    dispatch,
-  } = useContext(PokemonContext);
+  const pokemon = useStore((state) => state.pokemon);
+  const setSelectedPokemon = useStore((state) => state.setSelectedPokemon);
+  const filter = useStore((state) => state.filter);
   return (
     <table width="100%">
       <tbody>
@@ -19,12 +17,7 @@ function PokemonTable() {
           .map((pokemon) => (
             <PokemonRow
               pokemon={pokemon}
-              onClick={(pokemon) =>
-                dispatch({
-                  type: "SET_SELECTED_POKEMON",
-                  payload: pokemon,
-                })
-              }
+              onClick={(pokemon) => setSelectedPokemon(pokemon)}
             />
           ))}
       </tbody>
